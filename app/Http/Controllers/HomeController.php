@@ -15,6 +15,12 @@ class HomeController extends Controller
     public function register(Request $request)
     {
         if ($request->post()) {
+            $request->validate([
+                'name' => 'required|min:3|max:50',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required'
+            ]);
+
             $userModel = new User();
 
             $userModel->name = $request->post('name');
@@ -24,14 +30,17 @@ class HomeController extends Controller
             $userModel->save();
 
             return redirect('registerSuccess');
-
         }
 
-        return view('home_register');
+        return view('home_register', [
+            'title' => 'Sign Up'
+        ]);
     }
 
     public function registerSuccess()
     {
-        return view('home_registerSuccess');
+        return view('home_registerSuccess', [
+            'title' => 'Signed up successfully'
+        ]);
     }
 }
