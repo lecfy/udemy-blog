@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,26 @@ class HomeController extends Controller
         return view('home_index');
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        if ($request->post()) {
+            $userModel = new User();
+
+            $userModel->name = $request->post('name');
+            $userModel->email = $request->post('email');
+            $userModel->password = password_hash( $request->post('password'), PASSWORD_DEFAULT);
+
+            $userModel->save();
+
+            return redirect('registerSuccess');
+
+        }
+
         return view('home_register');
+    }
+
+    public function registerSuccess()
+    {
+        return view('home_registerSuccess');
     }
 }
