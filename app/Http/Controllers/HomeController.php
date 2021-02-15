@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -44,10 +45,35 @@ class HomeController extends Controller
         ]);
     }
 
-    public function login()
+    public function login(Request $request)
     {
+        if ($request->post()) {
+
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                // logged in
+                return redirect('loginSuccess');
+            }
+
+            // error
+            return back()->with('error', 'Email or Password is incorrect');
+        }
+
         return view('home_login', [
             'title' => 'Login'
+        ]);
+    }
+
+    public function loginSuccess()
+    {
+        return view('home_loginSuccess', [
+            'title' => 'Logged in successfully'
         ]);
     }
 }
