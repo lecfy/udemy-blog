@@ -43,4 +43,11 @@ class HomeController extends Controller
             'title' => 'Signed up successfully'
         ]);
     }
+
+    public function login()
+    {
+        return view('home_login', [
+            'title' => 'Login'
+        ]);
+    }
 }

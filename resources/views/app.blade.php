@@ -42,6 +42,7 @@
                 </li>
             </ul>
 
+            <a href="/login" class="btn btn-secondary me-1">Login</a>
             <a href="/register" class="btn btn-danger">Register</a>
         </div>
     </div>

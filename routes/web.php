@@ -17,3 +17,4 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'register']);
 Route::post('/register', [\App\Http\Controllers\HomeController::class, 'register']);
 Route::get('/registerSuccess', [\App\Http\Controllers\HomeController::class, 'registerSuccess']);
+Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);
