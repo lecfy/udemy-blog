@@ -42,8 +42,13 @@
                 </li>
             </ul>
 
-            <a href="/login" class="btn btn-secondary me-1">Login</a>
-            <a href="/register" class="btn btn-danger">Register</a>
+            @auth
+                <a href="/account" class="btn btn-secondary me-1">Account</a>
+                <a href="/logout" class="btn btn-danger me-1">Logout</a>
+            @else
+                <a href="/login" class="btn btn-secondary me-1">Login</a>
+                <a href="/register" class="btn btn-danger">Register</a>
+            @endif
         </div>
     </div>
 </nav>
