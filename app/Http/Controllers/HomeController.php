@@ -10,7 +10,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home_index');
+        return view('home_index', [
+            'title' => 'Home'
+        ]);
     }
 
     public function register(Request $request)
